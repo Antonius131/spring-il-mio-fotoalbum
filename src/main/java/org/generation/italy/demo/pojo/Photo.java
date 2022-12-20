@@ -56,13 +56,13 @@ public class Photo {
 		setVisible(visible);
 	}
 	
-	public Photo(String title, String description, String url, boolean visible, List<Category> categories) {
+	public Photo(String title, String description, String url, boolean visible, Category category) {
 		
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
-		setCategories(categories);
+		addCategory(category);
 	}
 
 
@@ -107,6 +107,19 @@ public class Photo {
 	}
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+	
+
+	public void addCategory(Category category) {
+		boolean finded = false;
+		
+		for (Category c : getCategories()) {
+			
+			if (c.getId() == category.getId()) finded = true;
+			
+			if(!finded)
+			getCategories().add(category);
+		}
 	}
 
 	@Override
