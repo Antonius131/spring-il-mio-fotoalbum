@@ -1,6 +1,7 @@
 package org.generation.italy.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Category;
 import org.generation.italy.demo.pojo.Photo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -66,4 +68,37 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 	
+	@GetMapping("/show/{id}")
+	public String show(
+			@PathVariable("id") int id,
+			Model model) {
+		
+		Optional<Category> optCategory= cateService.findById(id);
+		Category category = optCategory.get();
+		
+		List<Photo> photos = category.getPhotos();
+		
+		model.addAttribute("category", category);
+		model.addAttribute("photos", photos);
+		
+		return "category-show";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
