@@ -11,6 +11,7 @@
 	
 	<table>
 		<thead>
+			<th>Id</th>
 			<th>Title</th>
 			<th>Descrizione</th>
 			<th>Url</th>
@@ -21,6 +22,9 @@
 			th:each="photo : ${photos}"
 			th:object="${photo}"
 		>
+			<td>
+				[[*{id}]]
+			</td>
 			<td>
 				[[*{title}]]
 			</td>
@@ -34,7 +38,7 @@
 				[[*{visible}]]
 			</td>
 			<td>
-				<a href="">Modifica</a>
+				<a th:href="@{photos/show/{id}(id=${photo.id})}">Modifica</a>
 				<a href="">Elimina</a>
 			</td>
 		</tbody>

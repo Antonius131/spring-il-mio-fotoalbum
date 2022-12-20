@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mostra Foto</title>
+</head>
+<body th:object = "${photo}">
+
+	<h2>Foto - <i>[[*{title}]]</i></h2>
+	<img th:src="*{url}">
+	<h4>[[*{description}]]</h4>
+	
+	<i
+		th:each="category : ${categories}"
+		th:object="${category}"	
+	>
+		Categorie: [[*{name}]]
+	</i>
+	
+	<p>Visibile: [[*{visible}]]</p>
+</body>
+</html>
