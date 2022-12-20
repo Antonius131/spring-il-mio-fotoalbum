@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modifica categoria</title>
+</head>
+<body th:object = "${category}">
+
+	<h2>Modifica - <i>[[*{name}]]</i></h2>
+	
+	<div th:if="${errors}" class="col-12">
+		<h3>Si sono verificati i seguenti errori:</h3>
+		<ul>
+			<li 
+				th:each="error : ${errors}" 
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+	<div>
+		<form method="POST" th:action="@{/categories/edit}" th:object="${category}">
+			
+			<input type="number" name="id" th:field="*{id}" style="display:none" />
+			
+			<label>Nome</label><br>
+			<input type="text" name="name" th:field="*{name}" />
+			<br>
+			
+			<input type="submit" value="Aggiorna" />
+		</form>
+	</div>
+</body>
+</html>

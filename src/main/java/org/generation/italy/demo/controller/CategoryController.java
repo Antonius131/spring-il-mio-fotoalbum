@@ -40,6 +40,22 @@ public class CategoryController {
 		return "category-index";
 	}
 	
+	@GetMapping("/show/{id}")
+	public String show(
+			@PathVariable("id") int id,
+			Model model) {
+		
+		Optional<Category> optCategory= cateService.findById(id);
+		Category category = optCategory.get();
+		
+		List<Photo> photos = category.getPhotos();
+		
+		model.addAttribute("category", category);
+		model.addAttribute("photos", photos);
+		
+		return "category-show";
+	}
+	
 	@GetMapping("/create")
 	public String create(Model model) {
 		
@@ -61,27 +77,44 @@ public class CategoryController {
 		
 		if(bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-			return "redirect:/photos/create";
+			return "redirect:/categories/create";
 		}
 		
 		cateService.save(category);
 		return "redirect:/categories";
 	}
 	
-	@GetMapping("/show/{id}")
-	public String show(
+	@GetMapping("/edit/{id}")
+	public String edit(
 			@PathVariable("id") int id,
-			Model model) {
+			Model model
+		) {
 		
-		Optional<Category> optCategory= cateService.findById(id);
-		Category category = optCategory.get();
-		
-		List<Photo> photos = category.getPhotos();
+		Category category= cateService.findById(id).get();
+		List<Photo> photos = photoService.findAll();
 		
 		model.addAttribute("category", category);
 		model.addAttribute("photos", photos);
 		
-		return "category-show";
+		return "category-edit";
+	}
+	
+	@PostMapping("/edit")
+	public String update(
+			@Valid Category category,
+			BindingResult bindingResult,
+			RedirectAttributes redirectAttributes
+		) {
+		
+		if (bindingResult.hasErrors()) {
+			
+			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+			return "redirect:/categories/edit/" + category.getId();
+		}
+		
+		cateService.save(category);
+		
+		return "redirect:/categories";
 	}
 }
 
