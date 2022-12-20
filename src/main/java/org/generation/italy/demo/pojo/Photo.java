@@ -26,7 +26,7 @@ public class Photo {
 	private int id;
 	
 	@NotEmpty(message = "Deve esserci un titolo")
-	@Column
+	@Column(unique = true)
 	private String title;
 	
 	@NotEmpty(message = "Inserire una descrizione")
@@ -43,7 +43,7 @@ public class Photo {
 	@Column
 	private boolean visible;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "photos")
 	private List<Category> categories;
 	
 	public Photo(){}
@@ -54,6 +54,15 @@ public class Photo {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+	}
+	
+	public Photo(String title, String description, String url, boolean visible, List<Category> categories) {
+		
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
+		setVisible(visible);
+		setCategories(categories);
 	}
 	
 	public Photo(String title, String description, String url, boolean visible, Category category) {

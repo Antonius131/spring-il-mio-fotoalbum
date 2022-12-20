@@ -72,6 +72,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		thrillerList.add(p3);
 		
 				
+		
 		// creating categories
 		Category c1 = new Category("Drammatico", comedyList);
 		Category c2 = new Category("Thriller", thrillerList);
