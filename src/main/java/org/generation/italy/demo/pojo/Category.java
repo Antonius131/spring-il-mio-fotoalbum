@@ -23,7 +23,7 @@ public class Category {
 	@Column(unique = true)
 	private String name;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "categories")
 	private List<Photo> photos;
 	
 	

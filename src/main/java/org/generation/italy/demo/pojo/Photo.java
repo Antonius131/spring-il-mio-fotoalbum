@@ -43,7 +43,7 @@ public class Photo {
 	@Column
 	private boolean visible;
 
-	@ManyToMany(mappedBy = "photos")
+	@ManyToMany
 	private List<Category> categories;
 	
 	public Photo(){}
