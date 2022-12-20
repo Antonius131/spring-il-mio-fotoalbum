@@ -7,6 +7,59 @@
 <body th:object = "${photo}">
 
 	<h2>Modifica - <i>[[*{title}]]</i></h2>
+	
+	<div th:if="${errors}" class="col-12">
+		<h3 class="text-danger">Si sono verificati i seguenti errori:</h3>
+		<ul>
+			<li 
+				th:each="error : ${errors}" 
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+	<div>
+		<form method="POST" th:action="@{/photos/edit}" th:object="${photo}">
+			
+			<input type="number" name="id" th:field="*{id}" style="display:none" />
+			
+			<label>Titolo</label><br>
+			<input type="text" name="title" th:field="*{title}" />
+			<br>
+			
+			<label>Descrizione</label><br>
+			<input type="text" name="description" th:field="*{description}" />
+			<br>
+			
+			<label>Url</label><br>
+			<input type="text" name="url" th:field="*{url}" />
+			<br>
+			
+			<label>Visibilità</label>
+			<div>
+				<input type="radio" name="visible" th:field="*{visible}" value="1"/><label>Visibile</label>
+				<input type="radio" name="visible" th:field="*{visible}" value="0"/><label>Non visibile</label>
+			</div>
+			<br>
+			
+			<label>Categorie</label>
+			<div
+				th:each = "category : ${categories}"
+				th:object = "${category}"
+			>
+				<input 
+					type="checkbox" name="categories"
+					
+					th:value="*{id}"
+					th:field="${photo.categories}"
+				/>
+				<label>[[*{name}]]</label>
+			</div>
+			
+			<input type="submit" value="Aggiorna" />
+		</form>
+	</div>
 
 </body>
 </html>
