@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Foto</title>
+</head>
+<body>
+
+	<h1>Tutto le foto</h1>
+	
+	
+	<table>
+		<thead>
+			<th>Title</th>
+			<th>Descrizione</th>
+			<th>Url</th>
+			<th>Visibile</th>
+			<th>Azioni</th>
+		</thead>
+		<tbody
+			th:each="photo : ${photos}"
+			th:object="${photo}"
+		>
+			<td>
+				[[*{title}]]
+			</td>
+			<td>
+				[[*{description}]]
+			</td>
+			<td>
+				[[*{url}]]
+			</td>
+			<td>
+				[[*{visible}]]
+			</td>
+			<td>
+				<a href="">Modifica</a>
+				<a href="">Elimina</a>
+			</td>
+		</tbody>
+	</table>
+</body>
+</html>
