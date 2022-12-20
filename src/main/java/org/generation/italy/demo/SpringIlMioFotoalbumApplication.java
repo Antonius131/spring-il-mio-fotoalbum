@@ -1,6 +1,11 @@
 package org.generation.italy.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.generation.italy.demo.pojo.Category;
 import org.generation.italy.demo.pojo.Photo;
+import org.generation.italy.demo.service.CategoryService;
 import org.generation.italy.demo.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,13 +18,18 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 	@Autowired
 	private PhotoService photoService;
 	
+	@Autowired
+	private CategoryService cateService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-	
+				
+		
+		// creating photos
 		Photo p1 = new Photo(
 				"The Batman", 
 				"Io sono Vendetta", 
@@ -52,5 +62,21 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		photoService.save(p2);
 		photoService.save(p3);
 		photoService.save(p4);
+		
+		List<Photo> comedyList = new ArrayList<>();
+		comedyList.add(p4);
+		comedyList.add(p2);
+		
+		List<Photo> thrillerList = new ArrayList<>();
+		thrillerList.add(p1);
+		thrillerList.add(p3);
+		
+				
+		// creating categories
+		Category c1 = new Category("Drammatico", comedyList);
+		Category c2 = new Category("Thriller", thrillerList);
+		
+		cateService.save(c1);
+		cateService.save(c2);
 	}
 }
