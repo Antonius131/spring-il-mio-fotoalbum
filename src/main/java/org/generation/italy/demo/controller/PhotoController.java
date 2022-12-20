@@ -38,6 +38,35 @@ public class PhotoController {
 		return "photo-index";
 	}
 	
+	
+	@GetMapping("/create")
+	public String create(Model model) {
+		
+		Photo photo = new Photo();
+		List<Category> categories = cateService.findAll();
+		
+		model.addAttribute("photo", photo);
+		model.addAttribute("categories", categories);
+		
+		return "photo-create";
+	}
+	
+	@PostMapping("/create")
+	public String store(
+			@Valid Photo photo, 
+			BindingResult bindingResult, 
+			RedirectAttributes redirectAttributes
+		) {
+		
+		if(bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+			return "redirect:/photos/create";
+		}
+		
+		photoService.save(photo);
+		return "redirect:/photos";
+	}
+	
 	@GetMapping("/show/{id}")
 	public String show(
 			@PathVariable("id") int id,
