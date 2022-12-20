@@ -40,7 +40,7 @@
 			<td>
 				<a th:href="@{photos/show/{id}(id=${photo.id})}">Mostra</a>
 				<a th:href="@{photos/edit/{id}(id=${photo.id})}">Modifica</a>
-				<a href="">Elimina</a>
+				<a th:href="@{photos/delete/{id}(id=${photo.id})}">Elimina</a>
 			</td>
 		</tbody>
 	</table>
