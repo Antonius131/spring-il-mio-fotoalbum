@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Categorie</title>
+</head>
+<body>
+
+	<h1>Tutte le categorie</h1>
+	
+	<div style="margin-bottom:20px">
+		<a href="categories/create">Crea una categoria</a>
+	</div>
+	<table>
+		<thead>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Azioni</th>
+		</thead>
+		<tbody
+			th:each="category : ${categories}"
+			th:object="${category}"
+		>
+			<td>
+				[[*{id}]]
+			</td>
+			<td>
+				[[*{name}]]
+			</td>
+			<td>
+				<a href="">Mostra</a>
+				<a href="">Modifica</a>
+				<a href="">Elimina</a>
+			</td>
+		</tbody>
+	</table>
+</body>
+</html>
