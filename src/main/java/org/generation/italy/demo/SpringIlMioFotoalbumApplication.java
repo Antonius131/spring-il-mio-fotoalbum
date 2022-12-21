@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.generation.italy.demo.pojo.Category;
+import org.generation.italy.demo.pojo.Comment;
 import org.generation.italy.demo.pojo.Photo;
 import org.generation.italy.demo.pojo.Role;
 import org.generation.italy.demo.pojo.User;
 import org.generation.italy.demo.service.CategoryService;
+import org.generation.italy.demo.service.CommentService;
 import org.generation.italy.demo.service.PhotoService;
 import org.generation.italy.demo.service.RoleService;
 import org.generation.italy.demo.service.UserService;
@@ -30,6 +32,11 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private CommentService comService;
+	
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
@@ -65,6 +72,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		cateList2.add(c2);
 		cateList2.add(c4);
 		cateList2.add(c6);
+		
+		
 		
 		
 		
@@ -105,6 +114,10 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		photoService.save(p2);
 		photoService.save(p3);
 		photoService.save(p4);
+		
+		Comment comment = new Comment("troppo bello mio film preferito", p1);
+		comService.save(comment);
+		
 		
 		
 		// creating User and Admin
