@@ -113,7 +113,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		roleService.save(admin);
 		
 		
-		User user = new User("admin", "admin", admin);
+		User user = new User("admin", "{noop}admin", admin);
 		userService.save(user);
 	}
 }
