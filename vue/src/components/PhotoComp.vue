@@ -9,7 +9,8 @@
          <!-- comments and categories section-->
          <div @click="
             getCategories(photo.id),
-            getComments(photo.id)"
+            getComments(photo.id)
+            "
          >
             <p>Vai ai commenti</p>
             <div v-for="category in categories" :key="category.id">
@@ -18,6 +19,10 @@
             <div v-for="comment in comments" :key="comment.id">
                <p>{{ comment.text }}</p>
             </div>
+            <div>
+               <p>Commenta</p>
+               <input type="text" v-model="usrComment" @enter="sendComment(photo.id)"/>
+            </div>
          </div>
       </div>
    </div>
@@ -25,6 +30,8 @@
 
 <script>
    import axios from 'axios';
+
+   const PHOTO_ID = -1;
 
    export default {
       name: 'HelloWorld',
@@ -35,7 +42,15 @@
             apiUrl: 'http://localhost:8080/api/1',
             photos: [],
             categories: [],
-            comments: []
+            comments: [],
+
+            photoId: PHOTO_ID,
+
+            usrComment: '',
+            sndComment: {
+               photo: '',
+               text: ''
+            }
          }
       },
 
@@ -64,9 +79,19 @@
             });
          },
 
-         getPhotoId(id) {
+         sendComment(photoId) {
+            
+            this.sndComment.photo = photoId;
+            this.sndComment.text = this.usrComment;
 
-            console.log(id);
+            axios.post(this.apiUrl + "/send/" + photoId, this.sndComment)
+            .then(result => {
+
+               this.getComments(photoId);
+               this.usrComment= '';
+               
+               console.log(result);
+            });
          }
       },
 
