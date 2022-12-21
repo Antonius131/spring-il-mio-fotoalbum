@@ -7,11 +7,17 @@
          <img :src="photo.url" :alt="photo.title">
          
          <!-- comments and categories section-->
-         <div @click="getCategories(photo.id)">
+         <div @click="
+            getCategories(photo.id),
+            getComments(photo.id)"
+         >
             <p>Vai ai commenti</p>
-            <span v-for="category in categories" :key="category.id">
-               {{ category.name }}
-            </span>
+            <div v-for="category in categories" :key="category.id">
+               <span>{{ category.name }}</span>
+            </div>
+            <div v-for="comment in comments" :key="comment.id">
+               <p>{{ comment.text }}</p>
+            </div>
          </div>
       </div>
    </div>
@@ -28,7 +34,8 @@
 
             apiUrl: 'http://localhost:8080/api/1',
             photos: [],
-            categories: []
+            categories: [],
+            comments: []
          }
       },
 
@@ -37,7 +44,6 @@
             axios.get(this.apiUrl + "/photos/all")
             .then(result => {
 
-               console.log(result.data);
                this.photos = result.data;
             });
          },
@@ -46,8 +52,15 @@
             axios.get(this.apiUrl + "/ph/category/" + photoId)
             .then(result => {
 
-               console.log(result.data);
                this.categories = result.data;
+            });
+         },
+
+         getComments(photoId) {
+            axios.get(this.apiUrl + "/ph/comments/" + photoId)
+            .then(result => {
+
+               this.comments = result.data;
             });
          },
 
