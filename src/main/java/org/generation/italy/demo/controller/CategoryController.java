@@ -101,6 +101,7 @@ public class CategoryController {
 	
 	@PostMapping("/edit")
 	public String update(
+			@PathVariable("id") int id,
 			@Valid Category category,
 			BindingResult bindingResult,
 			RedirectAttributes redirectAttributes
@@ -113,6 +114,15 @@ public class CategoryController {
 		}
 		
 		cateService.save(category);
+		
+		return "redirect:/categories";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(
+			@PathVariable("id") int id) {
+		
+		cateService.deleteById(id);
 		
 		return "redirect:/categories";
 	}

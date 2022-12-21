@@ -39,6 +39,12 @@ public class Category {
 		setPhotos(photos);
 	}
 	
+	public Category(String name, Photo photo) {
+		setName(name);
+		addPhoto(photo);
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -59,6 +65,19 @@ public class Category {
 	}
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
+	}
+	
+	
+	public void addPhoto(Photo photo) {
+		boolean finded = false;
+		
+		for (Photo p : getPhotos()) {
+			
+			if (p.getId() == photo.getId()) finded = true;
+			
+			if(!finded)
+			getPhotos().add(photo);
+		}
 	}
 	
 	

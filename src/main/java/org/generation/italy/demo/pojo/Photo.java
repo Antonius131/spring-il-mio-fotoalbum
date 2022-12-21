@@ -16,7 +16,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 
-
 @Entity
 @Table
 public class Photo {
@@ -45,6 +44,7 @@ public class Photo {
 
 	@ManyToMany
 	private List<Category> categories;
+	
 	
 	public Photo(){}
 	

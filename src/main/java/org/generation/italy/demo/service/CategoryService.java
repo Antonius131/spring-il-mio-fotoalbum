@@ -33,4 +33,10 @@ public class CategoryService {
 		
 		cateRepo.delete(category);
 	}
+	
+	public void deleteById(int id) {
+		
+		cateRepo.deleteById(id);
+	}
+	
 }
