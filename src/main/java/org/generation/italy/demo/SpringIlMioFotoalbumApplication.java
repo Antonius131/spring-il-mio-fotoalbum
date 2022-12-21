@@ -5,8 +5,12 @@ import java.util.List;
 
 import org.generation.italy.demo.pojo.Category;
 import org.generation.italy.demo.pojo.Photo;
+import org.generation.italy.demo.pojo.Role;
+import org.generation.italy.demo.pojo.User;
 import org.generation.italy.demo.service.CategoryService;
 import org.generation.italy.demo.service.PhotoService;
+import org.generation.italy.demo.service.RoleService;
+import org.generation.italy.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +24,12 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CategoryService cateService;
+	
+	@Autowired 
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
@@ -95,6 +105,16 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		photoService.save(p2);
 		photoService.save(p3);
 		photoService.save(p4);
+		
+		
+		// creating User and Admin
+		
+		Role admin = new Role("Admin");
+		roleService.save(admin);
+		
+		
+		User user = new User("admin", "admin", admin);
+		userService.save(user);
 	}
 }
 
