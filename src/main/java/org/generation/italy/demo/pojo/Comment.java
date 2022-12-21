@@ -1,11 +1,15 @@
 package org.generation.italy.demo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,12 +26,18 @@ public class Comment {
 	@Column
 	private String text;
 	
+	@ManyToOne
+	@JoinColumn(name="photo_id", nullable=true)
+	@JsonIgnore
+	private Photo photo;
+	
 	
 	public Comment() {}
 	
-	public Comment(String text) {
+	public Comment(String text, Photo photo) {
 		
 		setText(text);
+		setPhoto(photo);
 	}
 
 	
@@ -45,6 +55,14 @@ public class Comment {
 		this.text = text;
 	}
 	
+	public Photo getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
+	}
+	
+
 	@Override
 	public String toString() {
 		
