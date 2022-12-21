@@ -1,14 +1,11 @@
 <template>
    <div>
       <h1>Hello Photos</h1>
-
-      <ul>
-         <li v-for="photo in photos" :key="photo.id">
-            <h4>{{ photo.title }}</h4>
-            <p>{{ photo.description }}</p>
-            <img :src="photo.url" :alt="photo.title">
-         </li>
-      </ul>
+      <div v-for="photo in photos" :key="photo.id">
+         <h4>{{ photo.title }}</h4>
+         <p>{{ photo.description }}</p>
+         <img :src="photo.url" :alt="photo.title">
+      </div>
    </div>
 </template>
 
@@ -27,10 +24,10 @@
       },
 
       mounted() {
-
          axios.get(this.apiUrl + "/all")
             .then(result => {
 
+               console.log(result.data);
                this.photos = result.data;
             });
       }

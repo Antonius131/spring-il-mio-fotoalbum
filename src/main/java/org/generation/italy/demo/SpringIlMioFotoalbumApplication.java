@@ -80,7 +80,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		Photo p2 = new Photo(
 				"Love Actually", 
 				"Very romantic. Very comedy.", 
-				"https://static.posters.cz/image/750/poster/the-hateful-eight-teaser-i28466.jpg", 
+				"https://mir-s3-cdn-cf.behance.net/project_modules/disp/1b68d950028809.5608748f9f1fe.jpg", 
 				true,
 				cateList1
 				);
