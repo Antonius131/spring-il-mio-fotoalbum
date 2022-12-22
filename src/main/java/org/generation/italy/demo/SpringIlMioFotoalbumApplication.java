@@ -80,7 +80,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		// creating photos
 		Photo p1 = new Photo(
 				"The Batman", 
-				"Io sono Vendetta", 
+				"Io sono Vendetta",
+				"#investigativo",
 				"https://static.posters.cz/image/350/poster/the-batman-2022-i122125.jpg", 
 				true,
 				cateList2
@@ -89,7 +90,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		Photo p2 = new Photo(
 				"Love Actually", 
 				"Very romantic. Very comedy.", 
-				"https://mir-s3-cdn-cf.behance.net/project_modules/disp/1b68d950028809.5608748f9f1fe.jpg", 
+				"#drammatico",
+				"https://mir-s3-cdn-cf.behance.net/project_modules/disp/1b68d950028809.5608748f9f1fe.jpg",
 				true,
 				cateList1
 				);
@@ -97,6 +99,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		Photo p3 = new Photo(
 				"The hateful eight", 
 				"The 8th film", 
+				"#dinvestigativo",
 				"https://i.pinimg.com/originals/28/58/8f/28588f44d4cb45cf125706da30367c64.jpg", 
 				true,
 				cateList2
@@ -104,7 +107,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		
 		Photo p4 = new Photo(
 				"The Truman Show", 
-				"The story of a lifetime", 
+				"The story of a lifetime",
+				"#drammatico",
 				"https://i.pinimg.com/originals/1f/62/15/1f6215facd358b080e029ceec919166a.jpg", 
 				true,
 				cateList1

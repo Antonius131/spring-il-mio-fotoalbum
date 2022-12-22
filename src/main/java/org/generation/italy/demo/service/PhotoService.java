@@ -39,4 +39,8 @@ public class PhotoService {
 		
 		photoRepo.deleteById(id);
 	}
+	
+	public List<Photo> findByNameOrTag(String query) {
+		return photoRepo.findByTitleContainingOrTagContaining(query, query);
+	}
 }

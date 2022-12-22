@@ -35,6 +35,10 @@ public class Photo {
 	@Lob
 	private String description;
 	
+	@Column
+	@NotEmpty(message = "il tag non può essere vuoto")
+	private String tag;
+	
 	@NotEmpty(message = "Inserire l'URL dell'immagine")
 	@URL(message = "Inserisci un URL valido")
 	@Column
@@ -52,28 +56,31 @@ public class Photo {
 	
 	public Photo(){}
 	
-	public Photo(String title, String description, String url, boolean visible) {
+	public Photo(String title, String description, String tag, String url, boolean visible) {
 		
 		setTitle(title);
 		setDescription(description);
+		setTag(tag);
 		setUrl(url);
 		setVisible(visible);
 	}
 	
-	public Photo(String title, String description, String url, boolean visible, List<Category> categories) {
+	public Photo(String title, String description, String tag, String url, boolean visible, List<Category> categories) {
 		
 		setTitle(title);
 		setDescription(description);
+		setTag(tag);
 		setUrl(url);
 		setVisible(visible);
 		setCategories(categories);
 	}
 	
-	public Photo(String title, String description, String url, boolean visible, Category category) {
+	public Photo(String title, String description, String tag, String url, boolean visible, Category category) {
 		
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
+		setTag(tag);
 		setVisible(visible);
 		addCategory(category);
 	}
@@ -98,6 +105,13 @@ public class Photo {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getUrl() {

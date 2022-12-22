@@ -1,9 +1,16 @@
 <template>
    <div>
       <h1>Hello Photos</h1>
+
+      <div>
+         <input type="text" placeholder="Cerca" v-model="searchValue">
+         <input type="submit" value="Cerca" @click="getSearchedPhotos()">
+      </div>
+
       <div v-for="photo in photos" :key="photo.id">
          <h4>{{ photo.title }}</h4>
          <p>{{ photo.description }}</p>
+         <p>{{ photo.tag }}</p>
          <img 
             :src="photo.url" :alt="photo.title" 
          />
@@ -37,6 +44,7 @@
             apiUrl: 'http://localhost:8080/api/1',
             photos: [],
 
+            searchValue: '',
             usrComment: '',
             sndComment: {
                photo: '',
@@ -96,6 +104,18 @@
                
                console.log(result);
             });
+         },
+
+         getSearchedPhotos() {
+
+            if(this.searchValue === '') return this.getPhotos();
+
+            axios.get(this.apiUrl + '/photos/search/' + this.searchValue)
+            .then(result => {
+
+               this.photos = '';
+               this.photos = result.data;
+            })
          }
       },
 
