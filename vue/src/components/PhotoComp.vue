@@ -4,24 +4,21 @@
       <div v-for="photo in photos" :key="photo.id">
          <h4>{{ photo.title }}</h4>
          <p>{{ photo.description }}</p>
-         <img :src="photo.url" :alt="photo.title">
+         <img 
+            :src="photo.url" :alt="photo.title" 
+         />
          
          <!-- comments and categories section-->
-         <div @click="
-            getCategories(photo.id),
-            getComments(photo.id)
-            "
-         >
-            <p>Vai ai commenti</p>
-            <div v-for="category in categories" :key="category.id">
-               <span>{{ category.name }}</span>
-            </div>
-            <div v-for="comment in comments" :key="comment.id">
+         <div v-for="category in photo.categories" :key="category.id">
+            <span>{{ category.name }}</span>
+         </div>
+         <div>
+            <div v-for="comment in photo.comments" :key="comment.id">
                <p>{{ comment.text }}</p>
             </div>
             <div>
                <p>Commenta</p>
-               <input type="text" v-model="usrComment" @enter="sendComment(photo.id)"/>
+               <input type="text" v-model="usrComment" @keyup.enter="sendComment(photo.id)"/>
             </div>
          </div>
       </div>
@@ -31,20 +28,14 @@
 <script>
    import axios from 'axios';
 
-   const PHOTO_ID = -1;
-
    export default {
-      name: 'HelloWorld',
+      name: 'PhotoComp',
 
       data() {
          return {
 
             apiUrl: 'http://localhost:8080/api/1',
             photos: [],
-            categories: [],
-            comments: [],
-
-            photoId: PHOTO_ID,
 
             usrComment: '',
             sndComment: {
@@ -55,6 +46,12 @@
       },
 
       methods: {
+
+         getIndexFromPhoto(photoId) {
+
+            return this.photos.findIndex(photo => photo.id === photoId);
+         },
+
          getPhotos() {
             axios.get(this.apiUrl + "/photos/all")
             .then(result => {
@@ -67,7 +64,10 @@
             axios.get(this.apiUrl + "/ph/category/" + photoId)
             .then(result => {
 
-               this.categories = result.data;
+               const phCategories = result.data;
+               const index = this.getIndexFromPhoto(photoId);
+
+               this.photos[index].categories = phCategories;
             });
          },
 
@@ -75,12 +75,16 @@
             axios.get(this.apiUrl + "/ph/comments/" + photoId)
             .then(result => {
 
-               this.comments = result.data;
+               const phComments = result.data;
+               const index = this.getIndexFromPhoto(photoId);
+
+               this.photos[index].comments = phComments;
             });
          },
 
          sendComment(photoId) {
             
+            console.log('id: ' +  photoId);
             this.sndComment.photo = photoId;
             this.sndComment.text = this.usrComment;
 

@@ -118,6 +118,15 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		Comment comment = new Comment("troppo bello mio film preferito", p1);
 		comService.save(comment);
 		
+		Comment comment2 = new Comment("wow", p2);
+		comService.save(comment2);
+		
+		Comment comment3 = new Comment("sì dai", p3);
+		comService.save(comment3);
+		
+		Comment comment4 = new Comment("non ci siamo", p4);
+		comService.save(comment4);
+		
 		
 		
 		// creating User and Admin

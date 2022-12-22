@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.URL;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,7 +17,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-
 
 @Entity
 @Table
@@ -47,7 +45,6 @@ public class Photo {
 	private boolean visible;
 
 	@ManyToMany
-	@JsonIgnore
 	private List<Category> categories;
 	
 	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
