@@ -31,19 +31,10 @@
                         <p>{{ comment.text }}</p>
                      </div>
                      <hr>
-                     <div class="input-group">
-                        <input 
-                           type="text" 
-                           v-model="usrComment" 
-                           placeholder="Commenta"
-                           class="form-control"
-                        />
-                        <button 
-                           class="btn btn-primary" 
-                           type="button" 
-                           @click="sendComment(photo.id)">Commenta
-                        </button>
-                     </div>
+                     <InputComp 
+                        @send="sendComment"
+                        :id = photo.id
+                     />
                   </div>
                </div>
             </div>
@@ -54,9 +45,13 @@
 
 <script>
    import axios from 'axios';
+   import InputComp from './InputComp.vue';
 
    export default {
       name: 'PhotoComp',
+      components: {
+         InputComp
+      },
 
       data() {
          return {
@@ -110,11 +105,10 @@
             });
          },
 
-         sendComment(photoId) {
+         sendComment(userComment, photoId) {
             
-            console.log('id: ' +  photoId);
             this.sndComment.photo = photoId;
-            this.sndComment.text = this.usrComment;
+            this.sndComment.text = userComment;
 
             axios.post(this.apiUrl + "/send/" + photoId, this.sndComment)
             .then(result => {
