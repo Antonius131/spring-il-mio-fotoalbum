@@ -7,7 +7,7 @@
          <input type="submit" value="Cerca" @click="getSearchedPhotos()">
       </div>
 
-      <div v-for="photo in photos" :key="photo.id">
+      <div v-for="photo in photos" :key="photo.id" :class="photo.visible ? '' : 'd-none'">
          <h4>{{ photo.title }}</h4>
          <p>{{ photo.description }}</p>
          <p>{{ photo.tag }}</p>

@@ -92,7 +92,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 				"Very romantic. Very comedy.", 
 				"#drammatico",
 				"https://mir-s3-cdn-cf.behance.net/project_modules/disp/1b68d950028809.5608748f9f1fe.jpg",
-				true,
+				false,
 				cateList1
 				);
 		
