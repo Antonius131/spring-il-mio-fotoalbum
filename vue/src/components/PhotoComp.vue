@@ -1,31 +1,50 @@
 <template>
    <div>
-      <h1>Hello Photos</h1>
-
-      <div>
-         <input type="text" placeholder="Cerca" v-model="searchValue">
-         <input type="submit" value="Cerca" @click="getSearchedPhotos()">
-      </div>
-
-      <div v-for="photo in photos" :key="photo.id" :class="photo.visible ? '' : 'd-none'">
-         <h4>{{ photo.title }}</h4>
-         <p>{{ photo.description }}</p>
-         <p>{{ photo.tag }}</p>
-         <img 
-            :src="photo.url" :alt="photo.title" 
-         />
-         
-         <!-- comments and categories section-->
-         <div v-for="category in photo.categories" :key="category.id">
-            <span>{{ category.name }}</span>
-         </div>
-         <div>
-            <div v-for="comment in photo.comments" :key="comment.id">
-               <p>{{ comment.text }}</p>
+      <div class="container p-5">
+         <div class="row">
+            <div class="col-md-8 offset-md-2 d-flex justify-content-between align-items-center">
+               <h1>Hello Photos</h1>
+               <div class="input-group" style="width: 30%">
+                  <input type="text" placeholder="Cerca" class="form-control" v-model="searchValue">
+                  <button type="submit" class="btn btn-primary" @click="getSearchedPhotos()">Cerca</button>
+               </div>
             </div>
-            <div>
-               <p>Commenta</p>
-               <input type="text" v-model="usrComment" @keyup.enter="sendComment(photo.id)"/>
+         </div>
+         <div class="row p-2">
+            <div 
+               class="col-4"
+               v-for="photo in photos" :key="photo.id" :class="photo.visible ? '' : 'd-none'"
+            >
+               <div class="card">
+                  <img class="img-fluid card-img-top" :src="photo.url" :alt="photo.title" />
+                  <div class="card-body text-start">
+                     <h5 class="card-title"><strong>{{ photo.title }}</strong></h5>
+                     <h6 class="card-subtitle mb-1">{{ photo.description }}</h6>
+                     <p class="text-muted mb-1">{{ photo.tag }}</p>
+                     <span v-for="category in photo.categories" :key="category.id">
+                        <i>{{ category.name }}, </i>
+                     </span>
+                  </div>
+                  <div class="card-footer text-start">
+                     <h6 class="card-title"><strong>Commenti</strong></h6>
+                     <div v-for="comment in photo.comments" :key="comment.id">
+                        <p>{{ comment.text }}</p>
+                     </div>
+                     <hr>
+                     <div class="input-group">
+                        <input 
+                           type="text" 
+                           v-model="usrComment" 
+                           placeholder="Commenta"
+                           class="form-control"
+                        />
+                        <button 
+                           class="btn btn-primary" 
+                           type="button" 
+                           @click="sendComment(photo.id)">Commenta</button>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>

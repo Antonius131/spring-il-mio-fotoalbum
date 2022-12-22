@@ -82,7 +82,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 				"The Batman", 
 				"Io sono Vendetta",
 				"#investigativo",
-				"https://static.posters.cz/image/350/poster/the-batman-2022-i122125.jpg", 
+				"https://www.ecodelcinema.com/wp-content/uploads/2022/01/the-batman-poster.jpeg", 
 				true,
 				cateList2
 				);
@@ -99,7 +99,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		Photo p3 = new Photo(
 				"The hateful eight", 
 				"The 8th film", 
-				"#dinvestigativo",
+				"#investigativo",
 				"https://i.pinimg.com/originals/28/58/8f/28588f44d4cb45cf125706da30367c64.jpg", 
 				true,
 				cateList2
