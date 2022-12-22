@@ -41,7 +41,8 @@
                         <button 
                            class="btn btn-primary" 
                            type="button" 
-                           @click="sendComment(photo.id)">Commenta</button>
+                           @click="sendComment(photo.id)">Commenta
+                        </button>
                      </div>
                   </div>
                </div>
