@@ -8,17 +8,27 @@
 </head>
 <body th:object = "${photo}">
 
-	<h2>Foto - <i>[[*{title}]]</i></h2>
-	<p><i>[[*{description}]]</i></p>
-	<img th:src="*{url}">
-	
-	<p>
-		Categorie: 
-		<i th:each="category : ${categories}" th:object="${category}">
-			[[*{name}]],
-		</i>
-	</p>
-	
-	<p>Visibile: [[*{visible}]]</p>
+	<div class="containe py-5">
+		<div class="row">
+			<div class="col-md-4 offset-md-4">	
+				<div class="card">	
+					<img class="card-img-top" th:src="*{url}">	
+					<div class="card-body">					
+						<h2 class="card-title">
+							Foto - <i>[[*{title}]]</i>
+						</h2>
+						<p>Visibile: [[*{visible}]]</p>
+						<p class="card-subtitle"><i>[[*{description}]]</i></p>
+						<p>
+							Categorie: 
+							<i th:each="category : ${categories}" th:object="${category}">
+								[[*{name}]],
+							</i>
+						</p>
+					</div>		
+				</div>		
+			</div>
+		</div>
+	</div>
 </body>
 </html>
