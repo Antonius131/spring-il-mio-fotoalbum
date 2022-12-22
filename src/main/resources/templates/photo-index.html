@@ -7,46 +7,48 @@
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
 </head>
 <body>
-
-	<h1>Tutto le foto</h1>
 	
-	<div style="margin-bottom:20px">
-		<a href="photos/create">Aggiungi una foto</a>
-	</div>
-	<table>
-		<thead>
-			<th>Id</th>
-			<th>Title</th>
-			<th>Descrizione</th>
-			<th>Url</th>
-			<th>Visibile</th>
-			<th>Azioni</th>
-		</thead>
-		<tbody
-			th:each="photo : ${photos}"
-			th:object="${photo}"
-		>
-			<td>
-				[[*{id}]]
-			</td>
-			<td>
-				[[*{title}]]
-			</td>
-			<td>
-				[[*{description}]]
-			</td>
-			<td>
-				[[*{url}]]
-			</td>
-			<td>
-				[[*{visible}]]
-			</td>
-			<td>
-				<a th:href="@{photos/show/{id}(id=${photo.id})}">Mostra</a>
-				<a th:href="@{photos/edit/{id}(id=${photo.id})}">Modifica</a>
-				<a th:href="@{photos/delete/{id}(id=${photo.id})}">Elimina</a>
-			</td>
-		</tbody>
-	</table>
+	<div class="container py-5">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<h1>Tutte le foto</h1>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Title</th>
+							<th scope="col">Descrizione</th>
+							<th scope="col">Url</th>
+							<th scope="col">Visibile</th>
+							<th scope="col">Azioni</th>
+						</tr>
+					</thead>
+					<tbody th:each="photo : ${photos}" th:object="${photo}">
+						<tr>
+							<th scope="row">[[ *{id} ]]</th>
+							<td>[[*{title}]]</td>
+							<td>[[*{description}]]</td>
+							<td>[[*{url}]]</td>
+							<td>[[*{visible}]]</td>
+							<td>
+								<a class="btn btn-link text-primary" th:href="@{photos/show/{id}(id=${photo.id})}">Mostra</a>
+								<a class="btn btn-link text-warning" th:href="@{photos/edit/{id}(id=${photo.id})}">Modifica</a>
+								<a class="btn btn-link text-danger" th:href="@{photos/delete/{id}(id=${photo.id})}">Elimina</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<a class="btn btn-primary" href="photos/create">Aggiungi una foto</a>				
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
