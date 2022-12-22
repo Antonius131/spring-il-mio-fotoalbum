@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<header th:replace="~{headerFrag :: header()}"></header>
+	
 	<h2>Aggiungi una foto</h2>
 	<div th:if="${errors}" class="col-12">
 		<h3>Errors:</h3>
